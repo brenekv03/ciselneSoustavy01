@@ -19,9 +19,22 @@ namespace ciselneSoustavy01
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int cislo = int.Parse(textBox1.Text);
-            if (JePrvocislo(cislo)) MessageBox.Show("Je prvočíslo\n" + cislo);
-            else MessageBox.Show("Není prvočíslo\n" + cislo);
+            int n = int.Parse(textBox1.Text);
+            listBox1.Items.Clear();
+            Random rnd = new Random();
+            bool prvniPrvocislo = false;
+            for(int i =0;i<n&&!prvniPrvocislo;i++)
+            {
+                int cislo = rnd.Next(1, 121);
+                listBox1.Items.Add(cislo);
+
+                if (JePrvocislo(cislo))
+                {
+                    MessageBox.Show("Obsahuje prvočíslo\n" + cislo);
+                    prvniPrvocislo=true;
+                }
+            }
+            if(!prvniPrvocislo) MessageBox.Show("Neobsahuje prvočíslo");
         }
         static private bool JePrvocislo(int cislo)
         {
